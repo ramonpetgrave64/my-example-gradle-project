@@ -1,6 +1,5 @@
 name: SLSA Provenance with Gradle builder
-on:
-  - [workflow_dispatch, pull_request]
+on: [workflow_dispatch, pull_request]
 
 permissions: read-all
 
