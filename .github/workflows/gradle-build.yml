@@ -21,4 +21,5 @@ jobs:
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
-      path: ${{ github.workspace }}/app/build/libs/app.jar
+      with:
+        path: ${{ github.workspace }}/app/build/libs/app.jar
