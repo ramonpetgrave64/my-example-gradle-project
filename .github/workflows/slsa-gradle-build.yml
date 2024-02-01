@@ -9,10 +9,18 @@ jobs:
       id-token: write
       contents: read
       actions: read
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@v1.9.0
-    with:
-      artifact-list: build/libs/app.jar
-    #   artifact-list: ${{ github.workspace }}/app/build/libs/app.jar
-      rekor-log-public: false
-    #   TODO: fidn out why this doesnt work, param is missing from the workflow?
-    #   private-repository: true
+    runs-on: ubuntu-latest
+    steps:
+    - uses: slsa-framework/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@v1.9.0
+      with:
+          artifact-list: build/libs/app.jar
+        #   artifact-list: ${{ github.workspace }}/app/build/libs/app.jar
+          rekor-log-public: false
+        #   TODO: fidn out why this doesnt work, param is missing from the workflow?
+        #   private-repository: true
+    - name: Setup tmate session
+      if: ${{ failure() }}
+      uses: mxschmitt/action-tmate@v3
+      with:
+        limit-access-to-actor: true
+
