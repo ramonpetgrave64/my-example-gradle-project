@@ -12,7 +12,7 @@ jobs:
     # uses: slsa-framework/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@v1.9.0
     uses: ramonpetgrave64/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@gradle-debug
     with:
-      artifact-list: build/libs/app.jar
+      artifact-list: ./app/build/libs/app.jar
     #   artifact-list: ${{ github.workspace }}/app/build/libs/app.jar
       rekor-log-public: false
     #   TODO: fidn out why this doesnt work, param is missing from the workflow?
