@@ -18,8 +18,9 @@ jobs:
           rekor-log-public: false
         #   TODO: fidn out why this doesnt work, param is missing from the workflow?
         #   private-repository: true
+
     - name: Setup tmate session
-      if: ${{ failure() }}
+      # if: ${{ failure() }}
       uses: mxschmitt/action-tmate@v3
       with:
         limit-access-to-actor: true
