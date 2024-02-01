@@ -14,6 +14,6 @@ jobs:
     with:
       artifact-list: ./app/build/libs/app.jar
     #   artifact-list: ${{ github.workspace }}/app/build/libs/app.jar
-      rekor-log-public: false
+      # rekor-log-public: false
     #   TODO: fidn out why this doesnt work, param is missing from the workflow?
     #   private-repository: true
