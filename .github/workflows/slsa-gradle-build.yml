@@ -12,4 +12,6 @@ jobs:
     # uses: slsa-framework/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@v1.9.0
     uses: ramonpetgrave64/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@gradle-debug
     with:
-      artifact-list: ./app/build/libs/app.jar, ./app/build/classes/java/main/my/example/gradle/project/App.class
+      artifact-list: >-
+        ./app/build/libs/app.jar,
+        ./app/build/classes/java/main/my/example/gradle/project/App.class
