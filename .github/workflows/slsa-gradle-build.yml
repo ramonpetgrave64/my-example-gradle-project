@@ -10,7 +10,7 @@ jobs:
       contents: read
       actions: read
     # uses: slsa-framework/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@v1.9.0
-    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@gradle-debug
+    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@main
     with:
       artifact-list: >-
         ./app/build/libs/app.jar,
