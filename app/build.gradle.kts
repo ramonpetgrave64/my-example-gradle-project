@@ -41,3 +41,12 @@ tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+tasks.register<Copy>("copySubProjectBuild") {
+    from(layout.buildDirectory)
+    into("${rootProject.projectDir}/build/${project.name}")
+}
+
+tasks.named("build") {
+    finalizedBy("copySubProjectBuild")
+}

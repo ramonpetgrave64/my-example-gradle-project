@@ -13,5 +13,5 @@ jobs:
     uses: ramonpetgrave64/slsa-github-generator/.github/workflows/builder_gradle_slsa3.yml@main
     with:
       artifact-list: >-
-        ./app/build/libs/app.jar,
-        ./app/build/classes/java/main/my/example/gradle/project/App.class
+        ./build/app/libs/app.jar,
+        ./build/app/classes/java/main/my/example/gradle/project/App.class,
