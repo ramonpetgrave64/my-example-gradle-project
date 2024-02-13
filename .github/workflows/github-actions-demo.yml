@@ -22,6 +22,6 @@ jobs:
         run: |
           echo token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
           echo url: $ACTIONS_ID_TOKEN_REQUEST_URL
-          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience" | jq
+          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq '.value'
 
 
