@@ -5,6 +5,7 @@ env:
   GH_TOKEN: ${{ github.token }}
 permissions:
   id-token: write
+  actions: read
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
