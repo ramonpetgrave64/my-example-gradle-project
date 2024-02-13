@@ -18,6 +18,8 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Show the OIDC token
         run: |
-          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL"
+          echo token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+          ehco url: $ACTIONS_ID_TOKEN_REQUEST_URL
+          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
 
 
