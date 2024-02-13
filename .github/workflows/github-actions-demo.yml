@@ -7,6 +7,21 @@ permissions:
   id-token: write
   actions: read
 jobs:
+  Another-Job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: get the job details
+        run: |
+          echo ${{ github.run_id }}
+          echo ${{ github.run_number }}
+          echo ${{ github.run_attempt }}
+          echo ${{ github.action }}
+          echo ${{ github.job }}
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
