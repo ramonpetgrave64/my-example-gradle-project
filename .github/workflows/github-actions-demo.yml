@@ -60,6 +60,14 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             /repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs \
+          | jq '.jobs.[].labels' | jq -es 'flatten | any(. == "self-hosted") | not' >/dev/null \
+            && echo success || echo failure
+      - name: check if self-hostedX
+        run: |
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs \
           | jq '.jobs.[].labels' | jq -es 'flatten | any(. == "self-hostedX") | not' >/dev/null \
             && echo success || echo failure
 # /repos/${{ github.repository }}/actions/jobs/${{ github.job }}
