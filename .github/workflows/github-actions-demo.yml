@@ -18,10 +18,15 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: Show the OIDC token
+      # - name: Show the OIDC token
+      #   run: |
+      #     echo token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+      #     echo url: $ACTIONS_ID_TOKEN_REQUEST_URL
+      #     curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq '.value'
+
+      - name: get the job details
         run: |
-          echo token: $ACTIONS_ID_TOKEN_REQUEST_TOKEN
-          echo url: $ACTIONS_ID_TOKEN_REQUEST_URL
-          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq '.value'
-
-
+          gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/OWNER/REPO/actions/jobs/JOB_ID
