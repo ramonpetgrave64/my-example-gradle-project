@@ -72,7 +72,7 @@ jobs:
             && echo success || echo failure
       - name: debug
         run: |
-          source ./scripts.sh
+          source ./.github/workflows/scripts/scripts.sh
 
           TARGET_LABEL="self-hosted"
 
