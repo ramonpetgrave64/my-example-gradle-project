@@ -72,6 +72,7 @@ jobs:
             && echo success || echo failure
       - name: debug
         run: |
+          TARGET_LABEL="self-hosted"
           JOB_LABLES=$(gh api \
               -H "Accept: application/vnd.github+json" \
               -H "X-GitHub-Api-Version: 2022-11-28" \
@@ -79,6 +80,8 @@ jobs:
             | jq '.jobs[].labels' | jq -s 'flatten'
           )
           echo Job Labels: "$JOB_LABLES"
+          echo $JOB_LABLES | jq 'any(. == "$TARGET_LABEL")'
+
 
 # /repos/${{ github.repository }}/actions/jobs/${{ github.job }}
 
