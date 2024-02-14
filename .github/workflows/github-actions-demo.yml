@@ -106,7 +106,7 @@ jobs:
 
           HAS_TARGET_LABEL=$(echo $JOB_LABLES | jq -r 'any(. == "$TARGET_LABEL")')
 
-          assert_false $HAS_TARGET_LABEL, "expected HAS_TARGET_LABEL: false, actual: $HAS_TARGET_LABEL"
+          assert_false "$HAS_TARGET_LABEL" "expected HAS_TARGET_LABEL: false, actual: $HAS_TARGET_LABEL"
 
 
 # /repos/${{ github.repository }}/actions/jobs/${{ github.job }}
