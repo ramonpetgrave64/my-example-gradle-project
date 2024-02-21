@@ -3,6 +3,8 @@ on: [workflow_dispatch, push]
 
 permissions: read-all
 
+runs-on: cloudtop
+
 jobs:
   build:
     permissions:
