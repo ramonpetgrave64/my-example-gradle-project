@@ -4,6 +4,9 @@ description: 'detect the github runner'
 runs:
   using: 'node20'
   main: 'index.js'
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 # runs:
 #   using: "composite"
