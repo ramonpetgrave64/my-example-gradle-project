@@ -56,4 +56,4 @@ jobs:
   detect-as-action:
     runs-on: self-hosted
     steps:
-        - uses: ramonpetgrave64/my-example-gradle-project/.github/workflows/detect-runner-js@main
+        - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
