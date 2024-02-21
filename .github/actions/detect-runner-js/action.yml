@@ -1,6 +1,12 @@
 name: 'detect-runner'
 description: 'detect the github runner'
 
+inputs:
+  token:
+    description: "The GitHub Actions token."
+    required: false
+    default: ${{ github.token }}
+
 runs:
   using: 'node20'
   main: 'index.js'
