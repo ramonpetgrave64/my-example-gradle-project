@@ -28,10 +28,9 @@ export async function getRunnerForJobs(): Promise<RunnerForJobs> {
         const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.slefHosted : runnerForJobs.githubHosted;
         targetList.push(job.name);
     })
-
+    console.log(runnerForJobs);
     return runnerForJobs;
 }
-
 console.log(getRunnerForJobs());
 
 
