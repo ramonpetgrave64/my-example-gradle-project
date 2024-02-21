@@ -63,3 +63,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
+
+  # detect the runner, where wthe detector is a re-usable workflow
+  detect-as-reusable-workflow:
+    uses: ramonpetgrave64/my-example-gradle-project/.github/workflows/detect-runner.yml@self-hosted-build
