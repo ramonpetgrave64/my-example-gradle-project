@@ -53,7 +53,13 @@ jobs:
       upload-assets: true
 
   # detect the runner, where the detector is an action
-  detect-as-action:
+  detect-as-action-self-hosted:
     runs-on: self-hosted
+    steps:
+        - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
+
+  # detect the runner, where the detector is an action
+  detect-as-action-ubuntu-latest:
+    runs-on: ubuntu-latest
     steps:
         - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
