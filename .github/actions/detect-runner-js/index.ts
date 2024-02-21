@@ -3,7 +3,7 @@ import { RestEndpointMethodTypes } from "@octokit/action";
 
 type RunnerForJobs = {
     githubHosted: string[]
-    slefHosted: string[]
+    selfHosted: string[]
 };
 type ListJobsForWorkflowResponseData = RestEndpointMethodTypes["actions"]["listJobsForWorkflowRun"]["response"]["data"];
 
@@ -22,10 +22,10 @@ export async function getRunnerForJobs(): Promise<RunnerForJobs> {
 
     const runnerForJobs: RunnerForJobs = {
         githubHosted: [],
-        slefHosted: [],
+        selfHosted: [],
     }
     data.jobs.forEach((job) => {
-        const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.slefHosted : runnerForJobs.githubHosted;
+        const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.selfHosted : runnerForJobs.githubHosted;
         targetList.push(job.name);
     })
     console.log(runnerForJobs);

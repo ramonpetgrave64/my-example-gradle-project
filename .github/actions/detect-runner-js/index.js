@@ -24,10 +24,10 @@ function getRunnerForJobs() {
         const data = res.data;
         const runnerForJobs = {
             githubHosted: [],
-            slefHosted: [],
+            selfHosted: [],
         };
         data.jobs.forEach((job) => {
-            const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.slefHosted : runnerForJobs.githubHosted;
+            const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.selfHosted : runnerForJobs.githubHosted;
             targetList.push(job.name);
         });
         console.log(runnerForJobs);
