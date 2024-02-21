@@ -40,7 +40,7 @@ jobs:
         path: ${{ env.ARTIFACT_PATH }}
 
   # This step calls the generic workflow to generate provenance.
-  provenance-self-hosted:
+  provenance-from-build-self-hosted:
     needs: [build-self-hosted]
     permissions:
       actions: read
@@ -88,7 +88,7 @@ jobs:
         path: ${{ env.ARTIFACT_PATH }}
 
   # This step calls the generic workflow to generate provenance.
-  provenance-ubuntu-latest:
+  provenance-from-ubuntu-latest:
     needs: [build-ubuntu-latest]
     permissions:
       actions: read
@@ -104,7 +104,7 @@ jobs:
   # wait until provenance generation jobs are done
   wait-provenance:
     runs-on: ubuntu-latest # doesn't necessarily require self-hosted or githuib-hosted
-    needs: [provenance-ubuntu-latest, provenance-self-hosted]
+    needs: [provenance-from-ubuntu-latest, provenance-from-build-self-hosted]
     steps: 
       - run: echo waiting
       
