@@ -3,7 +3,6 @@ description: 'detect the github runner'
 runs:
   using: "composite"
   steps:
-    steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
