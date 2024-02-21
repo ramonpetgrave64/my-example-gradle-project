@@ -1,14 +1,19 @@
 name: 'detect-runner'
 description: 'detect the github runner'
+
 runs:
-  using: "composite"
-  steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 20
-    - run: npm ci
-    - run: npm run build
-    - run: node .github/actions/detect-runner-js/index.js
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  using: 'node20'
+  main: 'index.js'
+
+# runs:
+#   using: "composite"
+#   steps:
+#     - uses: actions/checkout@v4
+#     - uses: actions/setup-node@v4
+#       with:
+#         node-version: 20
+#     - run: npm ci
+#     - run: npm run build
+#     - run: node .github/actions/detect-runner-js/index.js
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
