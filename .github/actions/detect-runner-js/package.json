@@ -1,8 +1,12 @@
 {
   "devDependencies": {
+    "@types/node": "^20.11.19",
     "typescript": "^5.3.3"
   },
   "scripts": {
     "build": "tsc"
+  },
+  "dependencies": {
+    "@octokit/action": "^6.0.7"
   }
 }
