@@ -38,6 +38,7 @@ jobs:
       with:
         name: app
         path: ${{ env.ARTIFACT_PATH }}
+
   # This step calls the generic workflow to generate provenance.
   provenance:
     needs: [build]
@@ -50,3 +51,9 @@ jobs:
       base64-subjects: "${{ needs.build.outputs.hashes }}"
       # Upload provenance to a new release
       upload-assets: true
+
+  # detect the runner, where the detector is an action
+  detect-as-action:
+    runs-on: self-hosted
+    steps:
+        - uses: ramonpetgrave64/my-example-gradle-project/.github/workflows/detect-runner-js@main
