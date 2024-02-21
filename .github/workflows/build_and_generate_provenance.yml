@@ -51,6 +51,7 @@ jobs:
       base64-subjects: "${{ needs.build-self-hosted.outputs.hashes }}"
       # Upload provenance to a new release
       upload-assets: true
+      provenance-name: app.jar.self-hosted.intoto.jsonl
 
   # This step builds our artifacts, uploads them to the workflow run, and
   # outputs their digest.
@@ -98,6 +99,7 @@ jobs:
       base64-subjects: "${{ needs.build-ubuntu-latest.outputs.hashes }}"
       # Upload provenance to a new release
       upload-assets: true
+      provenance-name: app.jar.ubuntu-latest.intoto.jsonl
       
   # detect the runner, where the detector is an action
   detect-as-action-self-hosted:
