@@ -1,5 +1,7 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
+
+
 # inputs:
 #   who-to-greet:  # id of input
 #     description: 'Who to greet'
@@ -8,6 +10,41 @@ description: 'Greet someone and record the time'
 # outputs:
 #   time: # id of output
 #     description: 'The time we greeted you'
-runs:
-  using: 'node20'
-  main: 'index.js'
+# runs:
+#   using: 'node20'
+#   main: 'index.js'
+
+
+jobs:
+  detect-default:
+    steps:
+      # Check out code using git
+      - uses: actions/checkout@v4
+      # Install Node 20
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm build
+      # Node.js script can be anywhere. A good convention is to put local GitHub Actions
+      # into the `.github/actions` folder
+      - run: node .github/actions/detect-runner-js/index.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  detect-running-on-self-hosted:
+    runs-on: self-hosted
+    steps:
+      # Check out code using git
+      - uses: actions/checkout@v4
+      # Install Node 20
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: npm build
+      # Node.js script can be anywhere. A good convention is to put local GitHub Actions
+      # into the `.github/actions` folder
+      - run: node .github/actions/detect-runner-js/index.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
