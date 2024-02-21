@@ -31,11 +31,13 @@ export async function getRunnerForJobs(): Promise<RunnerForJobs> {
     console.log(runnerForJobs);
     return runnerForJobs;
 }
-console.log(getRunnerForJobs());
+
 
 
 const world = 'world';
 export function hello(who: string = world): string {
     return `Hello ${who}! `;
 };
+
+console.log(getRunnerForJobs());
 console.log(hello());
