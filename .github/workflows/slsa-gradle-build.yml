@@ -5,7 +5,7 @@ permissions: read-all
 
 jobs:
   build:
-    runs-on: cloudtop
+    # runs-on: self-hosted # not allowed whe  using a resuable workflow
     permissions:
       id-token: write
       contents: read
@@ -16,3 +16,8 @@ jobs:
       artifact-list: >-
         ./build/app/libs/app.jar,
         ./build/app/classes/java/main/my/example/gradle/project/App.class,
+
+  other-job:
+    runs-on: self-hosted
+    steps:
+        - run: echo hello
