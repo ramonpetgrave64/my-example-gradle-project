@@ -1,11 +1,11 @@
-name: Check Runner
+name: Detect Runner
 on: [workflow_call]
 jobs:
-  check_runner-ubuntu-latest:
+  detect-runner-ubuntu-latest:
     runs-on: ubuntu-latest
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
-  check_runner-self-hosted:
+  detect-runner-self-hosted:
     runs-on: self-hosted
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
