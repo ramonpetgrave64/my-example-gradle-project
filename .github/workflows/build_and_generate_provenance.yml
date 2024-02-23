@@ -1,7 +1,7 @@
 # using example at https://github.com/slsa-framework/slsa-github-generator/blob/main/internal/builders/generic/README.md#getting-started
 
-name: Run Gradle on PRs
-on: [pull_request]
+name: Build with Provenance
+on: [push, pull_request]
 env:
   ARTIFACT_PATH: "${{ github.workspace }}/app/build/libs/app.jar"
 jobs:
@@ -46,7 +46,7 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.9.0
+    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@ramonpetgrave64-check-self-hosted-runner-node
     with:
       base64-subjects: "${{ needs.build-self-hosted.outputs.hashes }}"
       # Upload provenance to a new release
@@ -94,7 +94,7 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.9.0
+    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@ramonpetgrave64-check-self-hosted-runner-node
     with:
       base64-subjects: "${{ needs.build-ubuntu-latest.outputs.hashes }}"
       # Upload provenance to a new release
