@@ -51,4 +51,5 @@ jobs:
       base64-subjects: "${{ needs.build-self-hosted.outputs.hashes }}"
       # Upload provenance to a new release
       # upload-assets: true
+      upload-tag-name: "ramonpetgrave64-check-self-hosted-runner-node"
       provenance-name: app.jar.self-hosted.intoto.jsonl
