@@ -46,10 +46,9 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@ramonpetgrave64-check-self-hosted-runner-node
+    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v0.0.1
     with:
       base64-subjects: "${{ needs.build-self-hosted.outputs.hashes }}"
       # Upload provenance to a new release
       # upload-assets: true
-      upload-tag-name: "v1.2.3"
       provenance-name: app.jar.self-hosted.intoto.jsonl
