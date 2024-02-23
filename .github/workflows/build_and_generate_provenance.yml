@@ -1,7 +1,7 @@
 # using example at https://github.com/slsa-framework/slsa-github-generator/blob/main/internal/builders/generic/README.md#getting-started
 
 name: Build with Provenance
-on: [push, pull_request]
+on: [push]
 env:
   ARTIFACT_PATH: "${{ github.workspace }}/app/build/libs/app.jar"
 jobs:
@@ -50,7 +50,7 @@ jobs:
     with:
       base64-subjects: "${{ needs.build-self-hosted.outputs.hashes }}"
       # Upload provenance to a new release
-      upload-assets: true
+      # upload-assets: true
       provenance-name: app.jar.self-hosted.intoto.jsonl
 
   # This step builds our artifacts, uploads them to the workflow run, and
@@ -98,7 +98,7 @@ jobs:
     with:
       base64-subjects: "${{ needs.build-ubuntu-latest.outputs.hashes }}"
       # Upload provenance to a new release
-      upload-assets: true
+      # upload-assets: true
       provenance-name: app.jar.ubuntu-latest.intoto.jsonl
 
   # wait until provenance generation jobs are done
