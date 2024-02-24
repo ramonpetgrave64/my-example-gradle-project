@@ -8,7 +8,7 @@ jobs:
   # This step builds our artifacts, uploads them to the workflow run, and
   # outputs their digest.
   build-self-hosted:
-    runs-on: self-hosted
+    runs-on: cloudtop
     outputs:
       hashes: ${{ steps.hash.outputs.hashes }}
     steps:
@@ -111,7 +111,7 @@ jobs:
   # detect the runner, where the detector is an action
   detect-as-action-self-hosted:
     needs: wait-provenance
-    runs-on: self-hosted
+    runs-on: cloudtop
     steps:
         - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
 
