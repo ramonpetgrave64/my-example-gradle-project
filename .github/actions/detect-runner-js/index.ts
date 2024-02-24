@@ -20,6 +20,8 @@ export async function getRunnerForJobs(): Promise<RunnerForJobs> {
     });
     const data: ListJobsForWorkflowResponseData = res.data;
 
+    console.log(data);
+
     const runnerForJobs: RunnerForJobs = {
         githubHosted: [],
         selfHosted: [],

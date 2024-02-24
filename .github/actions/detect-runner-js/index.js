@@ -22,6 +22,7 @@ function getRunnerForJobs() {
             run_id: Number(process.env.GITHUB_RUN_ID),
         });
         const data = res.data;
+        console.log(data);
         const runnerForJobs = {
             githubHosted: [],
             selfHosted: [],
