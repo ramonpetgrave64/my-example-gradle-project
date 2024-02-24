@@ -1,7 +1,7 @@
 # using example at https://github.com/slsa-framework/slsa-github-generator/blob/main/internal/builders/generic/README.md#getting-started
 
 name: Build with Provenance
-on: [push, pull_request]
+on: [push]
 env:
   ARTIFACT_PATH: "${{ github.workspace }}/app/build/libs/app.jar"
 jobs:
