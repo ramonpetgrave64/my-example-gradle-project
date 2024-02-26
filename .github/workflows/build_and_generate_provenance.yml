@@ -110,6 +110,8 @@ jobs:
       
   # detect the runner, where the detector is an action
   detect-as-action-self-hosted:
+    permissions:
+      id-token: write
     needs: wait-provenance
     runs-on: cloudtop
     steps:
@@ -118,6 +120,8 @@ jobs:
             token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
   # detect the runner, where the detector is an action
   detect-as-action-ubuntu-latest:
+    permissions:
+      id-token: write
     needs: wait-provenance
     runs-on: ubuntu-latest
     steps:
@@ -126,6 +130,8 @@ jobs:
             token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
   # detect the runner, where wthe detector is a re-usable workflow
   detect-as-reusable-workflow:
+    permissions:
+      id-token: write
     needs: wait-provenance
     # uses: ramonpetgrave64/my-example-gradle-project/.github/workflows/detect_runner.yml@self-hosted-build
     uses: ./.github/workflows/detect_runner.yml
