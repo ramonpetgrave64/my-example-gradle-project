@@ -10,7 +10,7 @@ on:
     secrets:
       token:
         description: "The GitHub Actions token."
-        required: false
+        required: true
         # default: ${{ github.token }}
 jobs:
   detect-runner-ubuntu-latest:
