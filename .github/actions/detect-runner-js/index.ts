@@ -1,37 +1,41 @@
-import { Octokit } from "@octokit/action";
-import { RestEndpointMethodTypes } from "@octokit/action";
+import { Octokit as OctokitRest } from "@octokit/rest";
 
 type RunnerForJobs = {
     githubHosted: string[]
     selfHosted: string[]
 };
-type ListJobsForWorkflowResponseData = RestEndpointMethodTypes["actions"]["listJobsForWorkflowRun"]["response"]["data"];
 
 const selfHostedLabel = "self-hosted";
 
-export async function getRunnerForJobs(): Promise<RunnerForJobs> {
-    const octokit = new Octokit();
+export async function ensureOnlyGithubHostedRunners(): Promise<void> {
     const [owner, repo] = process.env.GITHUB_REPOSITORY!.split("/");
-
-    const res = await octokit.actions.listJobsForWorkflowRun({
-        owner: owner,
-        repo: repo,
-        run_id: Number(process.env.GITHUB_RUN_ID!),
-    });
-    const data: ListJobsForWorkflowResponseData = res.data;
-
-    console.log(data);
-
-    const runnerForJobs: RunnerForJobs = {
-        githubHosted: [],
-        selfHosted: [],
-    }
-    data.jobs.forEach((job) => {
-        const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.selfHosted : runnerForJobs.githubHosted;
-        targetList.push(job.name);
-    })
-    console.log(runnerForJobs);
-    return runnerForJobs;
+    const octokitRest = new OctokitRest();
+    const jobs = await octokitRest.paginate(
+        octokitRest.rest.actions.listJobsForWorkflowRun,
+        {
+            owner: owner,
+            repo: repo,
+            run_id: Number(process.env.GITHUB_RUN_ID),
+        },
+    );
+    console.dir(jobs);
+    const selfHostedRunnersForRepo = await octokitRest.paginate(
+        octokitRest.rest.actions.listSelfHostedRunnersForRepo,
+        {
+            owner: owner,
+            repo: repo,
+        },
+    );
+    console.dir(selfHostedRunnersForRepo);
+    // const runnerForJobs: RunnerForJobs = {
+    //     githubHosted: [],
+    //     selfHosted: [],
+    // }
+    // data.jobs.forEach((job) => {
+    //     const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.selfHosted : runnerForJobs.githubHosted;
+    //     targetList.push(job.name);
+    // })
+    // console.log(runnerForJobs);
 }
 
 
@@ -41,5 +45,5 @@ export function hello(who: string = world): string {
     return `Hello ${who}! `;
 };
 
-console.log(getRunnerForJobs());
+console.log(ensureOnlyGithubHostedRunners());
 console.log(hello());

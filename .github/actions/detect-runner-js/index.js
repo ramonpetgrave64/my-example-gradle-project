@@ -9,38 +9,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.hello = exports.getRunnerForJobs = void 0;
-const action_1 = require("@octokit/action");
+exports.hello = exports.ensureOnlyGithubHostedRunners = void 0;
+const rest_1 = require("@octokit/rest");
 const selfHostedLabel = "self-hosted";
-function getRunnerForJobs() {
+function ensureOnlyGithubHostedRunners() {
     return __awaiter(this, void 0, void 0, function* () {
-        const octokit = new action_1.Octokit();
         const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
-        const res = yield octokit.actions.listJobsForWorkflowRun({
+        const octokitRest = new rest_1.Octokit();
+        const jobs = yield octokitRest.paginate(octokitRest.rest.actions.listJobsForWorkflowRun, {
             owner: owner,
             repo: repo,
             run_id: Number(process.env.GITHUB_RUN_ID),
         });
-        const data = res.data;
-        console.log(data);
-        const runnerForJobs = {
-            githubHosted: [],
-            selfHosted: [],
-        };
-        data.jobs.forEach((job) => {
-            const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.selfHosted : runnerForJobs.githubHosted;
-            targetList.push(job.name);
+        console.dir(jobs);
+        const selfHostedRunnersForRepo = yield octokitRest.paginate(octokitRest.rest.actions.listSelfHostedRunnersForRepo, {
+            owner: owner,
+            repo: repo,
         });
-        console.log(runnerForJobs);
-        return runnerForJobs;
+        console.dir(selfHostedRunnersForRepo);
+        // const runnerForJobs: RunnerForJobs = {
+        //     githubHosted: [],
+        //     selfHosted: [],
+        // }
+        // data.jobs.forEach((job) => {
+        //     const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.selfHosted : runnerForJobs.githubHosted;
+        //     targetList.push(job.name);
+        // })
+        // console.log(runnerForJobs);
     });
 }
-exports.getRunnerForJobs = getRunnerForJobs;
+exports.ensureOnlyGithubHostedRunners = ensureOnlyGithubHostedRunners;
 const world = 'world';
 function hello(who = world) {
     return `Hello ${who}! `;
 }
 exports.hello = hello;
 ;
-console.log(getRunnerForJobs());
+console.log(ensureOnlyGithubHostedRunners());
 console.log(hello());
