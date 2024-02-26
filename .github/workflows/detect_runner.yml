@@ -1,11 +1,27 @@
 name: Detect Runner
-on: [workflow_call]
+on:
+  workflow_call:
+    # inputs:
+    #   token2:
+    #     description: "The GitHub Actions token."
+    #     required: false
+    #     default: ${{ github.token }}
+    #     type: string
+    secrets:
+      token:
+        description: "The GitHub Actions token."
+        required: false
+        # default: ${{ github.token }}
 jobs:
   detect-runner-ubuntu-latest:
     runs-on: ubuntu-latest
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
+        with:
+          token: ${{ secrets.token }}
   detect-runner-self-hosted:
     runs-on: self-hosted
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
+        with:
+          token: ${{ secrets.token }}

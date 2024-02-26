@@ -114,15 +114,20 @@ jobs:
     runs-on: cloudtop
     steps:
         - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
-
+          with:
+            token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
   # detect the runner, where the detector is an action
   detect-as-action-ubuntu-latest:
     needs: wait-provenance
     runs-on: ubuntu-latest
     steps:
         - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
-
+          with:
+            token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
   # detect the runner, where wthe detector is a re-usable workflow
   detect-as-reusable-workflow:
     needs: wait-provenance
-    uses: ramonpetgrave64/my-example-gradle-project/.github/workflows/detect_runner.yml@self-hosted-build
+    # uses: ramonpetgrave64/my-example-gradle-project/.github/workflows/detect_runner.yml@self-hosted-build
+    uses: ./.github/workflows/detect_runner.yml
+    # secrets:
+      # token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
