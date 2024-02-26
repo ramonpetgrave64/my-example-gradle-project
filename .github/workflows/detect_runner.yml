@@ -18,10 +18,10 @@ jobs:
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
         with:
-          token: ${{ secrets.gh-token }}
+          gh-token: ${{ secrets.gh-token }}
   detect-runner-self-hosted:
     runs-on: self-hosted
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
         with:
-          token: ${{ secrets.gh-token }}
+          gh-token: ${{ secrets.gh-token }}
