@@ -8,7 +8,7 @@ on:
     #     default: ${{ github.token }}
     #     type: string
     secrets:
-      gh-token:
+      token:
         description: "The GitHub Actions token."
         required: true
         # default: ${{ github.token }}
