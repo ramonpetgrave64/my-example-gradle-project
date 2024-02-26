@@ -9,6 +9,9 @@ type RunnerForJobs = {
 const selfHostedLabel = "self-hosted";
 
 export async function ensureOnlyGithubHostedRunners(): Promise<void> {
+    const iDToken = await getIDToken();
+    console.dir(iDToken);
+
     const [owner, repo] = process.env.GITHUB_REPOSITORY!.split("/");
     const octokitRest = new OctokitRest();
     const jobs = await octokitRest.paginate(
@@ -29,9 +32,6 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
         },
     );
     console.dir(selfHostedRunnersForRepo);
-
-    const iDToken = await getIDToken();
-    console.dir(iDToken);
 
     // const runnerForJobs: RunnerForJobs = {
     //     githubHosted: [],

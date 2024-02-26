@@ -11,9 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hello = exports.ensureOnlyGithubHostedRunners = void 0;
 const rest_1 = require("@octokit/rest");
+const core_1 = require("@actions/core");
 const selfHostedLabel = "self-hosted";
 function ensureOnlyGithubHostedRunners() {
     return __awaiter(this, void 0, void 0, function* () {
+        const iDToken = yield (0, core_1.getIDToken)();
+        console.dir(iDToken);
         const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
         const octokitRest = new rest_1.Octokit();
         const jobs = yield octokitRest.paginate(octokitRest.rest.actions.listJobsForWorkflowRun, {
