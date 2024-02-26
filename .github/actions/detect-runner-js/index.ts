@@ -1,4 +1,5 @@
 import { Octokit as OctokitRest } from "@octokit/rest";
+import { getIDToken } from "@actions/core";
 
 type RunnerForJobs = {
     githubHosted: string[]
@@ -19,6 +20,7 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
         },
     );
     console.dir(jobs);
+
     const selfHostedRunnersForRepo = await octokitRest.paginate(
         octokitRest.rest.actions.listSelfHostedRunnersForRepo,
         {
@@ -27,6 +29,10 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
         },
     );
     console.dir(selfHostedRunnersForRepo);
+
+    const iDToken = await getIDToken();
+    console.dir(iDToken);
+
     // const runnerForJobs: RunnerForJobs = {
     //     githubHosted: [],
     //     selfHosted: [],
