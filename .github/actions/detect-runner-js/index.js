@@ -17,8 +17,9 @@ function ensureOnlyGithubHostedRunners() {
     return __awaiter(this, void 0, void 0, function* () {
         const iDToken = yield (0, core_1.getIDToken)();
         console.dir(iDToken);
+        const token = (0, core_1.getInput)("gh-token");
         const [owner, repo] = process.env.GITHUB_REPOSITORY.split("/");
-        const octokitRest = new rest_1.Octokit();
+        const octokitRest = new rest_1.Octokit({ auth: token });
         const jobs = yield octokitRest.paginate(octokitRest.rest.actions.listJobsForWorkflowRun, {
             owner: owner,
             repo: repo,

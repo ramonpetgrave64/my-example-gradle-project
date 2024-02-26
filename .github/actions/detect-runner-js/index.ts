@@ -1,5 +1,5 @@
 import { Octokit as OctokitRest } from "@octokit/rest";
-import { getIDToken } from "@actions/core";
+import { getIDToken, getInput } from "@actions/core";
 
 type RunnerForJobs = {
     githubHosted: string[]
@@ -12,8 +12,10 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
     const iDToken = await getIDToken();
     console.dir(iDToken);
 
+    const token = getInput("gh-token");
+
     const [owner, repo] = process.env.GITHUB_REPOSITORY!.split("/");
-    const octokitRest = new OctokitRest();
+    const octokitRest = new OctokitRest({auth: token});
     const jobs = await octokitRest.paginate(
         octokitRest.rest.actions.listJobsForWorkflowRun,
         {
