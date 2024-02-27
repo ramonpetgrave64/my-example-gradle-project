@@ -47,7 +47,7 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
         label => selfHostedRunnerLabels.has(label)
     );
     if (commonLabels.length) {
-        const msg = `Self-hosted runners are not allowed in this workflow. labels: ${commonLabels}`;
+        const msg = `Self-hosted runners are not allowed in SLSA Level 3 workflows. labels: ${commonLabels}`;
         console.log(msg);
     };
 }

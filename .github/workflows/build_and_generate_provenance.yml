@@ -104,7 +104,7 @@ jobs:
   # wait until provenance generation jobs are done
   wait-provenance:
     runs-on: ubuntu-latest # doesn't necessarily require self-hosted or githuib-hosted
-    needs: [provenance-from-build-ubuntu-latest, provenance-from-build-self-hosted]
+    # needs: [provenance-from-build-ubuntu-latest, provenance-from-build-self-hosted]
     steps: 
       - run: echo waiting
       
