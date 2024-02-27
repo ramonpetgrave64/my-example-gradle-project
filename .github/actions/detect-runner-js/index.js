@@ -31,15 +31,14 @@ function ensureOnlyGithubHostedRunners() {
             repo: repo,
         });
         console.dir(selfHostedRunnersForRepo);
-        // const runnerForJobs: RunnerForJobs = {
-        //     githubHosted: [],
-        //     selfHosted: [],
-        // }
-        // data.jobs.forEach((job) => {
-        //     const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.selfHosted : runnerForJobs.githubHosted;
-        //     targetList.push(job.name);
-        // })
-        // console.log(runnerForJobs);
+        const selfHostedRunnerLabels = new Set(selfHostedRunnersForRepo.map(runner => runner.labels.map(label => label.name)).flat());
+        const jobLabels = new Set(jobs.map(job => job.labels).flat());
+        const commonLabels = [...jobLabels].filter(label => selfHostedRunnerLabels.has(label));
+        if (commonLabels.length) {
+            const msg = `Self-hosted runners are not allowed in this workflow. labels: ${commonLabels}`;
+            console.log(msg);
+        }
+        ;
     });
 }
 exports.ensureOnlyGithubHostedRunners = ensureOnlyGithubHostedRunners;

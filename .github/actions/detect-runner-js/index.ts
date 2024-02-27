@@ -15,7 +15,7 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
     const token = getInput("token");
 
     const [owner, repo] = process.env.GITHUB_REPOSITORY!.split("/");
-    const octokitRest = new OctokitRest({auth: token});
+    const octokitRest = new OctokitRest({ auth: token });
     const jobs = await octokitRest.paginate(
         octokitRest.rest.actions.listJobsForWorkflowRun,
         {
@@ -35,15 +35,21 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
     );
     console.dir(selfHostedRunnersForRepo);
 
-    // const runnerForJobs: RunnerForJobs = {
-    //     githubHosted: [],
-    //     selfHosted: [],
-    // }
-    // data.jobs.forEach((job) => {
-    //     const targetList = job.labels.includes(selfHostedLabel) ? runnerForJobs.selfHosted : runnerForJobs.githubHosted;
-    //     targetList.push(job.name);
-    // })
-    // console.log(runnerForJobs);
+    const selfHostedRunnerLabels: Set<string> = new Set<string>(
+        selfHostedRunnersForRepo.map(
+            runner => runner.labels.map(label => label.name)
+        ).flat()
+    );
+    const jobLabels: Set<string> = new Set<string>(
+        jobs.map(job => job.labels).flat()
+    );
+    const commonLabels = [...jobLabels].filter(
+        label => selfHostedRunnerLabels.has(label)
+    );
+    if (commonLabels.length) {
+        const msg = `Self-hosted runners are not allowed in this workflow. labels: ${commonLabels}`;
+        console.log(msg);
+    };
 }
 
 
