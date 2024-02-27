@@ -136,4 +136,4 @@ jobs:
     # uses: ramonpetgrave64/my-example-gradle-project/.github/workflows/detect_runner.yml@self-hosted-build
     uses: ./.github/workflows/detect_runner.yml
     secrets:
-      gh-token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
+      token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
