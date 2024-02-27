@@ -117,7 +117,7 @@ jobs:
     steps:
         - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
           with:
-            gh-token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
+            token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
   # detect the runner, where the detector is an action
   detect-as-action-ubuntu-latest:
     permissions:
@@ -127,7 +127,7 @@ jobs:
     steps:
         - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
           with:
-            gh-token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
+            token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
   # detect the runner, where wthe detector is a re-usable workflow
   detect-as-reusable-workflow:
     permissions:
