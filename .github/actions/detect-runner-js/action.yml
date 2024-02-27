@@ -9,7 +9,7 @@ inputs:
   token:
     description: "The GitHub Actions token."
     required: true
-    # default: ${{ github.token }}
+    default: ${{ github.token }}
 
 runs:
   using: 'node20'
