@@ -25,17 +25,22 @@ function ensureOnlyGithubHostedRunners() {
             repo: repo,
             run_id: Number(process.env.GITHUB_RUN_ID),
         });
-        console.dir(jobs);
+        console.dir(jobs, {
+            depth: 10
+        });
         const selfHostedRunnersForRepo = yield octokitRest.paginate(octokitRest.rest.actions.listSelfHostedRunnersForRepo, {
             owner: owner,
             repo: repo,
         });
-        console.dir(selfHostedRunnersForRepo);
+        console.dir(selfHostedRunnersForRepo, {
+            depth: 10
+        });
+        ;
         const selfHostedRunnerLabels = new Set(selfHostedRunnersForRepo.map(runner => runner.labels.map(label => label.name)).flat());
         const jobLabels = new Set(jobs.map(job => job.labels).flat());
         const commonLabels = [...jobLabels].filter(label => selfHostedRunnerLabels.has(label));
         if (commonLabels.length) {
-            const msg = `Self-hosted runners are not allowed in this workflow. labels: ${commonLabels}`;
+            const msg = `Self-hosted runners are not allowed in SLSA Level 3 workflows. labels: ${commonLabels}`;
             console.log(msg);
         }
         ;

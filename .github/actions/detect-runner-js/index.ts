@@ -24,7 +24,9 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
             run_id: Number(process.env.GITHUB_RUN_ID),
         },
     );
-    console.dir(jobs);
+    console.dir(jobs, {
+        depth: 10
+    });
 
     const selfHostedRunnersForRepo = await octokitRest.paginate(
         octokitRest.rest.actions.listSelfHostedRunnersForRepo,
@@ -33,7 +35,9 @@ export async function ensureOnlyGithubHostedRunners(): Promise<void> {
             repo: repo,
         },
     );
-    console.dir(selfHostedRunnersForRepo);
+    console.dir(selfHostedRunnersForRepo, {
+        depth: 10
+    });;
 
     const selfHostedRunnerLabels: Set<string> = new Set<string>(
         selfHostedRunnersForRepo.map(
