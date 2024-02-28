@@ -20,7 +20,7 @@ jobs:
         with:
           token: ${{ secrets.token }}
   detect-runner-self-hosted:
-    runs-on: self-hosted
+    runs-on: label-from-child-workflow
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
         with:

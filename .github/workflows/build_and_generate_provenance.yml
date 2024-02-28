@@ -117,7 +117,7 @@ jobs:
     permissions:
       id-token: write
     needs: wait-provenance
-    runs-on: cloudtop
+    runs-on: label-from-parent-workflow
     steps:
         - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
           with:
