@@ -46,7 +46,7 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.6
+    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.7
     secrets:
       token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
     with:
@@ -96,7 +96,7 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.6
+    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.7
     secrets:
       token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
     with:
