@@ -46,7 +46,9 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.4
+    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.5
+    secrets:
+      token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
     with:
       base64-subjects: "${{ needs.build-self-hosted.outputs.hashes }}"
       # Upload provenance to a new release
@@ -94,7 +96,9 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.4
+    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.5
+    secrets:
+      token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
     with:
       base64-subjects: "${{ needs.build-ubuntu-latest.outputs.hashes }}"
       # Upload provenance to a new release
