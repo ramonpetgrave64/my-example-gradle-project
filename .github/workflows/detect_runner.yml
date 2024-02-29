@@ -10,18 +10,16 @@ on:
     secrets:
       token:
         description: "The GitHub Actions token."
-        required: true
-        # default: ${{ github.token }}
 jobs:
   detect-runner-ubuntu-latest:
     runs-on: ubuntu-latest
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
         with:
-          token: ${{ secrets.token }}
+          token: ${{ secrets.token || github.token }}
   detect-runner-self-hosted:
     runs-on: label-from-child-workflow
     steps:
       - uses: ramonpetgrave64/my-example-gradle-project/.github/actions/detect-runner-js@self-hosted-build
         with:
-          token: ${{ secrets.token }}
+          token: ${{ secrets.token || github.token }}

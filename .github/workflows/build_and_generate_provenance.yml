@@ -139,5 +139,5 @@ jobs:
     needs: wait-provenance
     # uses: ramonpetgrave64/my-example-gradle-project/.github/workflows/detect_runner.yml@self-hosted-build
     uses: ./.github/workflows/detect_runner.yml
-    secrets:
-      token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
+    # secrets:
+      # token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER || github.token }}
