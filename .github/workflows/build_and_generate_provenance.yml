@@ -46,7 +46,7 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.7
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.9.0
     # secrets:
       # token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
     with:
@@ -96,7 +96,7 @@ jobs:
       actions: read
       id-token: write
       contents: write
-    uses: ramonpetgrave64/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.0.7
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.9.0
     secrets:
       token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
     with:
@@ -141,3 +141,20 @@ jobs:
     uses: ./.github/workflows/detect_runner.yml
     secrets:
       token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
+
+
+  slsa-detect-as-action-ubuntu-latest:
+    needs: wait-provenance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ramonpetgrave64/slsa-github-generator/.github/actions/ensure-github-hosted-runners-js@ramonpetgrave-new-check-as-action
+        with:
+          token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
+
+  slsa-detect-as-action-cloudtop:
+    needs: wait-provenance
+    runs-on: cloudtop
+    steps:
+      - uses: ramonpetgrave64/slsa-github-generator/.github/actions/ensure-github-hosted-runners-js@ramonpetgrave-new-check-as-action
+        with:
+          token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
