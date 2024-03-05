@@ -157,4 +157,4 @@ jobs:
     steps:
       - uses: ramonpetgrave64/slsa-github-generator/.github/actions/ensure-github-hosted-runners-js@ramonpetgrave-new-check-as-action
         with:
-          token: ${{ secrets.TOKEN_DETECT_SELF_HOSTED_RUNNER }}
+          token: ${{ github.token }}
