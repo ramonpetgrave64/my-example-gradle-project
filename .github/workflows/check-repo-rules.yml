@@ -17,6 +17,7 @@ jobs:
     name: Scorecard analysis
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: "Checkout code"
         uses: ./.gitub/actions/check-repo-rules
         id: check-repo-rules
