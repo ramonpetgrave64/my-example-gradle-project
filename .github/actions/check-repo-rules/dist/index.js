@@ -30822,7 +30822,7 @@ async function go() {
     const [owner, repo] = `${process.env.GITHUB_REPOSITORY}`.split('/');
     const octokit = new rest_1.Octokit();
     const branch = (await octokit.repos.get({ owner, repo })).data.default_branch;
-    const rules = octokit.paginate(octokit.repos.getBranchRules, {
+    const rules = await octokit.paginate(octokit.repos.getBranchRules, {
         owner,
         repo,
         branch

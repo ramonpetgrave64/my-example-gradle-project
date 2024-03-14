@@ -8,7 +8,7 @@ export async function go(): Promise<void> {
   const [owner, repo] = `${process.env.GITHUB_REPOSITORY}`.split('/')
   const octokit = new Octokit()
   const branch = (await octokit.repos.get({ owner, repo })).data.default_branch
-  const rules = octokit.paginate(octokit.repos.getBranchRules, {
+  const rules = await octokit.paginate(octokit.repos.getBranchRules, {
     owner,
     repo,
     branch
