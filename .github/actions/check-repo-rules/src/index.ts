@@ -19,6 +19,7 @@ export async function go(): Promise<void> {
   // not all repos belong to an oreganization
   if (repo_data.organization) {
     const org = repo_data.organization.login
+    // requires a token with members:read permissions
     const non_2fa_members = octokit.paginate(octokit.orgs.listMembers, {
       org,
       filter: '2fa_disabled'
