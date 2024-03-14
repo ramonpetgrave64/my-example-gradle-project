@@ -19,5 +19,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: "Checkout code"
-        uses: ./.gitub/actions/check-repo-rules
+        uses: ./.github/actions/check-repo-rules
         id: check-repo-rules
