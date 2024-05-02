@@ -1,0 +1,39 @@
+name: Build with Github Attestation
+on: 
+  push:
+  workflow_dispatch:
+    inputs:
+      thing:
+        type: string
+        default: "abc123"
+        description: "my arbitrary unused input"
+permissions:
+  id-token: write
+  contents: read
+  attestations: write
+env:
+  ARTIFACT_PATH: "${{ github.workspace }}/app/build/libs/app.jar"
+jobs:
+  # This step builds our artifacts, uploads them to the workflow run, and
+  # outputs their digest.
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      hashes: ${{ steps.hash.outputs.hashes }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: 11
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v3
+
+    - name: Execute Gradle build
+      run: ./gradlew build
+
+    - name: Generate artifact attestation
+      uses: actions/attest-build-provenance@v1
+      with:
+        subject-path: ${{ env.ARTIFACT_PATH }}
