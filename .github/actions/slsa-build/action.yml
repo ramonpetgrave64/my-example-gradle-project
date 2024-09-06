@@ -17,4 +17,5 @@ runs:
       uses: gradle/gradle-build-action@v3
 
     - name: Execute Gradle build
+      shell: bash
       run: ./gradlew build
