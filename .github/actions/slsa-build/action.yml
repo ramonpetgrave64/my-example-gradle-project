@@ -1,0 +1,20 @@
+name: SLSA3 Build
+
+description: >-
+  A named Action that you have at in your source repo .github/actions/slsa-build/action.yml.
+  The Workflow `attest-build-provenance-sls3-rw` will search invoke this action to run
+  your build. You man have any steps or invoke yet another Action.
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: 11
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v3
+
+    - name: Execute Gradle build
+      run: ./gradlew build
