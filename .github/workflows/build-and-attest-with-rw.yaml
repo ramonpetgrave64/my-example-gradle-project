@@ -13,7 +13,7 @@ jobs:
       id-token: write
       attestations: write
       contents: read
-    uses: ramonpetgrave/github-build-attestations-rw/.github/workflows/attest-build-provenance-slsa3-rw.yml@dev
+    uses: ramonpetgrave/github-build-attestations-rw/.github/workflows/attest-build-provenance-slsa3-rw.yml@main
     with:
       build-runner-label: ubuntu-latest
       subject-path: app/build/libs/app.jar
@@ -23,7 +23,7 @@ jobs:
       id-token: write
       attestations: write
       contents: read
-    uses: ramonpetgrave/github-build-attestations-rw/.github/workflows/attest-build-provenance-slsa3-rw.yml@dev
+    uses: ramonpetgrave/github-build-attestations-rw/.github/workflows/attest-build-provenance-slsa3-rw.yml@main
     with:
       build-runner-label: ubuntu-latest
       self-hosted-runner-check-high-perms: true
