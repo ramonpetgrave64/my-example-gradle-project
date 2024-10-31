@@ -31,11 +31,6 @@ jobs:
     - name: Execute Gradle build
       run: ./gradlew build
 
-    - name: Generate artifact attestation
-      uses: actions/attest-build-provenance@v1
-      with:
-        subject-path: ${{ env.ARTIFACT_PATH }}
-
     - name: Generate hashes
       shell: bash
       id: hash
